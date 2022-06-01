@@ -1,0 +1,253 @@
+/* --------------------------------------------start set font to root ----------------------------------------------------- */
+
+h1, .h1 {
+  font-size: 2.25rem; }
+
+h2, .h2 {
+  font-size: 1.7rem; }
+
+h3, .h3 {
+  font-size: 1.35rem; }
+
+h4, .h4 {
+  font-size: 1.15rem; }
+
+h5, .h5 {
+  font-size: 1rem; }
+
+h6, .h6 {
+  font-size: 0.875rem; }
+  
+/* --------------------------------------------end set font to root ----------------------------------------------------- */
+
+/* --------------------------------------------start suplimentary typography ----------------------------------------------------- */
+p{
+	max-width:800px;
+}
+.ns-tel{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ns-email{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a {
+    text-decoration: underline;
+}
+
+abbr[title], abbr[data-original-title] {
+    text-decoration: none;
+    font-style: initial;
+}
+dfn {
+    font-style: initial;
+}
+
+/* --------------------------------------------end suplimentary typography  ----------------------------------------------------- */
+
+
+/* --------------------------------------------start sticky footer ----------------------------------------------------- */
+body {
+    display: flex;
+    margin: 0;
+}
+
+.Site {
+  flex: 1 1 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh;
+}
+
+.Site-content {
+  flex: 1 1 auto;
+}
+
+.footer {background-image: url(https://beta.novascotia.ca/themes/ignition/img/bg-footer.svg);} 
+
+/* --------------------------------------------End sticky footer ----------------------------------------------------- */
+
+/* --------------------------------------------start visiually hidden screen reader accessible ----------------------------------------------------- */
+.ns-visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    border: 0 !important;
+    white-space: nowrap !important;
+}
+.ns-visually-hidden-focusable {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+}
+.ns-visually-hidden-focusable:active,
+.ns-visually-hidden-focusable:focus {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: inherit !important;
+    overflow: visible !important;
+    clip: auto !important;
+    -webkit-clip-path: none !important;
+    clip-path: none !important;
+    white-space: inherit !important;
+}
+/* --------------------------------------------end visiually hidden screen reader accessible ----------------------------------------------------- */
+
+/* --------------------------------------------start link no visited state ----------------------------------------------------- */
+.ns-link--no-visited-state:link {
+    color: #0058a4;
+}
+.ns-link--no-visited-state:visited {
+    color: #0058a4;
+}
+.ns-link--no-visited-state:hover {
+    color: #002f58;
+}
+.ns-link--no-visited-state:active {
+    color: #0058a4;
+}
+.ns-link--no-visited-state:focus {
+    color: #002f58;
+}
+
+/* --------------------------------------------end link no visited state ----------------------------------------------------- */
+
+/* -------------------------------------------- start back link ----------------------------------------------------- */
+
+.ns-back-link {
+    font-size: 14px;
+    font-size: 0.875rem;
+    line-height: 1.14286;
+    font-family: "open_sansregular",Helvetica,Arial,Tahoma,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-left: 14px;
+	transition: .2s ease;
+}
+@media (min-width: 40.0625em) {
+    .ns-back-link {
+        font-size: 16px;
+        font-size: 1rem;
+        line-height: 1.25;
+    }
+}
+.ns-back-link:hover,
+.ns-back-link:active,
+.ns-back-link:focus {
+    color: #002f58;
+}
+.ns-back-link[href] {
+    text-decoration: underline;
+}
+.ns-back-link[href]:focus {
+    text-decoration: none;
+}
+.ns-back-link[href]:hover:before, 
+.ns-back-link[href]:active:before, 
+.ns-back-link[href]:focus:before {
+    border-color: #002f58;
+	transition: .2s ease;
+}
+.ns-back-link:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+    margin: auto 0;
+    -webkit-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    transform: rotate(225deg);
+    border: solid;
+    border-width: 1px 1px 0 0;
+    border-color: #0058a4;
+}
+.ns-back-link:after {
+    content: "";
+    position: absolute;
+    top: -14px;
+    right: 0;
+    bottom: -14px;
+    left: 0;
+}
+/* -------------------------------------------- end back link ----------------------------------------------------- */
+/* -------------------------------------------- Start service header caption ----------------------------------------------------- */
+.ns-caption{
+    font-family: "open_sansregular",Helvetica,Arial,Tahoma,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.11111;
+    display: block;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.ns-caption + h1{
+	margin-top: 0;
+}
+/* -------------------------------------------- End service header caption ----------------------------------------------------- */
+
+
+/* -------------------------------------------- Start supplimentary icon styles ----------------------------------------------------- */
+.ns-heading__icon {
+    display: inline-flex;
+    align-items: baseline;
+    color: inherit;
+}
+.ns-heading__icon-left {
+    margin-right: 1rem;
+}
+
+.ns-heading__icon-right {
+    margin-left: 1rem;
+}
+
+.ns-heading__icon:before {
+    padding-right: 10px;
+}
+.ns-btn__icon {
+    display: inline-flex;
+    align-items: baseline;
+	text-align: left;
+}
+
+.ns-btn__icon .ns-btn__icon-left {
+    margin-right: .5rem;
+}
+
+.ns-btn__icon .ns-btn__icon-right {
+    margin-left: .5rem;
+}
+
+.ns-btn__icon:before {
+    padding-right: 5px;
+}
+
+/* -------------------------------------------- End supplimentary icon styles  ----------------------------------------------------- */

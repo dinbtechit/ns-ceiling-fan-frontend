@@ -1,0 +1,89 @@
+button:focus, .ns-link-button:focus{
+	-webkit-box-shadow:0 0 0 4px #f8d44c;
+	-moz-box-shadow:0 0 0 4px #f8d44c;
+	-o-box-shadow:0 0 0 4px #f8d44c;
+	box-shadow:0 0 0 4px #f8d44c;
+	transition: box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-decoration: none;
+}
+
+.btn-lg, .btn-sm, .btn-xs {
+    margin: 1rem auto;
+}
+
+.btn-md{
+	padding: .5rem .75rem;
+  font-size: 1rem;
+  line-height: 1;
+  border-radius: 3px;
+  text-decoration: none;
+  margin: .5rem auto;
+}
+
+.btn-default {
+	transition: 0.2s ease;
+	border: 0;
+  display: inline-block;
+}
+.btn-inline-field{
+	margin-bottom: 0;
+  height: 40px;
+  height: 2.5rem;
+}
+
+.ns-link-button{
+	text-decoration-line: none;
+}
+.ns-btn-2nd {
+    color: #0058a4;
+    background-color: #fff;
+    border-color: transparent;
+	transition: 0.2s ease;
+}
+.ns-btn-2nd:hover {
+    color: #0058a4;
+    background-color: #d4d4d4;
+    border-color: rgba(0,0,0,0);
+	transition: 0.2s ease;
+}
+.btn-success {
+	transition: 0.2s ease;
+	display: inline-block;
+	cursor: pointer;
+}
+.btn-warning{
+    color: #fff;
+    background-color: #a94442;
+    border-color: transparent;
+	transition: 0.2s ease;
+}
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active{
+    color: #fff;
+    background-color: #821c1b;
+    border-color: transparent;
+	transition: 0.2s ease;
+}
+a.btn-success:not([href]):not([tabindex]) {
+    color: #fff;
+}
+
+/* -------------------------------------------- button general ----------------------------------------------------- */
+
+/* -------------------------------------------- start yes / no button ----------------------------------------------------- */
+
+.ns-btn-yes-no {
+    padding: 20px 32px;
+    font-size: 24px;
+    font-size: 1.5rem;
+    line-height: 1.33333;
+    text-decoration: none;
+    margin: 27px auto;
+    margin-right: auto;
+    min-width: 120px;
+    min-width: 6rem;
+    border: 0;
+	border-radius: 6px;
+}

@@ -8,11 +8,18 @@
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "strictPropertyInitialization": false,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "paths": {
+      "ns-saltire": [
+        "dist/ns-saltire/ns-saltire",
+        "dist/ns-saltire"
+      ]
+    },
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",

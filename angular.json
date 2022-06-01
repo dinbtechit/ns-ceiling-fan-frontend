@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "5aaa15fa-1286-486f-bcbf-603318e83e8b"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,9 +34,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "dist/ns-saltire/assets/saltire-all.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -99,9 +107,45 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "dist/ns-saltire/assets/saltire-all.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+          }
+        }
+      }
+    },
+    "ns-saltire": {
+      "projectType": "library",
+      "root": "projects/ns-saltire",
+      "sourceRoot": "projects/ns-saltire/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ns-saltire/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ns-saltire/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ns-saltire/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ns-saltire/src/test.ts",
+            "tsConfig": "projects/ns-saltire/tsconfig.spec.json",
+            "karmaConfig": "projects/ns-saltire/karma.conf.js"
           }
         }
       }

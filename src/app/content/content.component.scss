@@ -1,0 +1,15 @@
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg {
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  @extend .flex-center;
+  img {
+    width: 400px;
+  }
+}

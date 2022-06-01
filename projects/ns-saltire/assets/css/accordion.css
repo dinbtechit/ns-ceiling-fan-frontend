@@ -1,0 +1,88 @@
+
+.js .accordion__panel {
+	background-color: inherit;
+	max-height: 0vh;
+	overflow: hidden;
+	padding: .05em 1.25em;
+	position: relative;
+	visibility: hidden;
+	z-index: 1;
+}
+
+.js .accordion__panel {
+	margin-top: -.1em;
+}
+
+.js .accordion__panel > :last-child {
+	margin-bottom: 0;
+}
+
+.js .accordion__panel[aria-hidden="false"] {
+	max-height: 1000vh;
+	overflow: auto;
+	padding: 1.25em 0;
+	visibility: visible;
+}
+
+.accordion button {
+	outline: none;
+	border: 0;
+	background-color: white;
+	padding: 0;
+	font-size: inherit;
+	text-align: left;
+	color: #0058a4;
+	cursor: pointer;
+	text-decoration: underline;
+	display: inline;
+}
+
+.accordion button:hover {
+	background: #f8d44c;
+    color: #0081f1;
+}
+
+.accordion button:focus {
+	/* outline: none; */
+	outline: solid 0.25em #f8d44c;
+    outline-offset: 0;
+    text-decoration: none;
+}
+
+
+
+.accordion .pseudo-link {
+    color: #0058a4;
+	cursor: pointer;
+    text-decoration: underline;
+}
+
+.accordion .pseudo-link:hover {
+    background: #f8d44c;
+    color: #0081f1;
+}
+
+.accordion .pseudo-link:focus {
+	outline: solid 0.25em #f8d44c;
+    outline-offset: 0;
+    text-decoration: none;
+}
+
+.otherways-accordion .accordion__heading.accordion__privacy button:before {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: '\f023';
+    font-size: 1.5rem;
+    padding: 0 6px;
+    position: relative;
+    top: 2px;
+}
+
+.otherways-accordion .accordion__heading button:after {
+    padding: 0 6px;
+}
+
+.ns-accordion button{
+	display: flex;
+    align-items: baseline;
+    line-height: 1.2;
+}
