@@ -27,9 +27,10 @@ export class FanHttpService {
     return this.http.put(`${this.baseUrl}/${this.cordPullPath}/2`, null).toPromise();
   }
 
-  async fetchForEvents(callback = (e: EventSourceMessage) => {}) {
+  async fetchForEvents(onSuccess = (e: EventSourceMessage) => {}, onError = (err: any) => {}) {
     await fetchEventSource(`${this.baseUrl}/${this.cordPullPath}/sse`, {
-      onmessage: (e) => callback(e)
+      onmessage: (e) => onSuccess(e),
+      onerror: (err: any) => onError(err)
     });
   }
 }

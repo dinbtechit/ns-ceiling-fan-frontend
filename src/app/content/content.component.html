@@ -1,30 +1,36 @@
 <ng-container *ngIf="fanState$ | async; let fan">
-<div fxLayout="column" fxLayoutAlign="center center" class="h-100">
-  <h1>Simple Ceiling Fan</h1>
-  <div class="svg" style="transform: scale(0.75)">
-    <img class="wings"
-         [ngClass] = "{
-         'wings-animate' : fan.speed > 0 && fan.direction,
-         'wings-animate-counter' : fan.speed > 0 && !fan.direction
+  <div fxLayout="column" fxLayoutAlign="center center" class="h-100" role="main">
+    <h1>Simple Ceiling Fan</h1>
+    <div class="svg" style="transform: scale(0.75)">
+      <img class="wings"
+           [ngClass]="{
+         'wings-animate' : fan.settings.speed > 0 && fan.settings.direction,
+         'wings-animate-counter' : fan.settings.speed > 0 && !fan.settings.direction
          }"
-         [style.animation-duration] = "getFanSpeed(fan.speed)"
-         src="https://i.ya-webdesign.com/images/fan-blades-png.png" alt="fan"
-         >
+           [style.animation-duration]="getFanSpeed(fan.settings.speed)"
+           src="https://i.ya-webdesign.com/images/fan-blades-png.png" alt="fan">
+    </div>
+    <div fxLayout="row" fxLayoutGap="15px" class="font-weight-bold">
+      <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.settings.speed == 0 }">0</div>
+      <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.settings.speed == 1 }">1</div>
+      <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.settings.speed == 2 }">2</div>
+      <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.settings.speed == 3 }">3</div>
+    </div>
+    {{ fan.settings.direction ? 'clockwise' : 'counter-clockwise' }}
+
+    <app-error-overlay *ngIf="fan.httpError.status"></app-error-overlay>
+
+    <div fxLayout="row" fxLayoutGap="50px">
+      <button class="btn-lg btn-default" (click)="onCord1Pull()">
+        <i class="fa fa-tachometer" aria-hidden="true"></i> Cord 1
+      </button>
+      <button class="btn-lg btn-default" (click)="onCord2Pull()">
+        <i class="fa fa-undo"
+           [ngClass]="{'fa-repeat' : !fan.settings.direction, 'fa-undo': fan.settings.direction}"
+           aria-hidden="true"></i> Cord 2
+      </button>
+    </div>
   </div>
-  <div fxLayout="row" fxLayoutGap="15px" class="font-weight-bold">
-    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.speed == 0 }">0</div>
-    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.speed == 1 }">1</div>
-    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.speed == 2 }">2</div>
-    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.speed == 3 }">3</div>
-  </div>
-  {{ fan.direction? 'clockwise' : 'counter-clockwise' }}
-  <div fxLayout="row" fxLayoutGap="50px">
-    <button class="btn-lg btn-default" (click)="onCord1Pull()">
-      <i class="fa fa-tachometer" aria-hidden="true"></i> Cord 1</button>
-    <button class="btn-lg btn-default" (click)="onCord2Pull()">
-      <i class="fa fa-undo"
-         [ngClass]="{'fa-repeat' : !fan.direction, 'fa-undo': fan.direction}"
-         aria-hidden="true"></i> Cord 2</button>
-  </div>
-</div>
+
+
 </ng-container>

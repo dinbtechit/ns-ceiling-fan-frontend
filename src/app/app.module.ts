@@ -13,13 +13,15 @@ import { FanState } from "./content/store/fan-state/fan.state";
 import { HttpClientModule } from "@angular/common/http";
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ErrorOverlayComponent } from './content/components/error-overlay/error-overlay.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ContentComponent
+    ContentComponent,
+    ErrorOverlayComponent
   ],
   imports: [
     BrowserModule,

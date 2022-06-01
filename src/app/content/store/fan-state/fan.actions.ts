@@ -17,3 +17,9 @@ export class PullChord1Action {
 export class PullChord2Action {
   static readonly type = '[fan] chord 2';
 }
+
+export class ErrorAction {
+  static readonly type = '[fan] error';
+  constructor(public payload?: any) {
+  }
+}
