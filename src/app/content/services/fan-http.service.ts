@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { EventSourceMessage, fetchEventSource } from "@microsoft/fetch-event-source";
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +27,9 @@ export class FanHttpService {
     return this.http.put(`${this.baseUrl}/${this.cordPullPath}/2`, null).toPromise();
   }
 
+  async fetchForEvents(callback = (e: EventSourceMessage) => {}) {
+    await fetchEventSource(`${this.baseUrl}/${this.cordPullPath}/sse`, {
+      onmessage: (e) => callback(e)
+    });
+  }
 }

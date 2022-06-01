@@ -3,7 +3,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { ListenFanEventsAction, LoadFanAction, PullChord1Action, PullChord2Action } from './fan.actions';
 import { FanSettings } from "../../content.component";
 import { FanHttpService } from "../../services/fan-http.service";
-import { fetchEventSource } from "@microsoft/fetch-event-source";
+import { EventSourceMessage, fetchEventSource } from "@microsoft/fetch-event-source";
 
 export interface FanStateModel {
   settings: FanSettings;
@@ -41,15 +41,8 @@ export class FanState {
 
   @Action(ListenFanEventsAction, {cancelUncompleted: true})
   async listenFanEvents(ctx: StateContext<FanStateModel>) {
-    let fanSettings: FanSettings = ctx.getState().settings;
-    await fetchEventSource('http://192.168.195.128:3000/api/v1/fan/cord/pull/sse', {
-      onmessage(ev) {
-        fanSettings = {
-            speed: Number((ev.data as any).speed),
-            direction: (ev.data as any).direction === 'true'
-        }
-        ctx.dispatch(new LoadFanAction());
-      }
+    await this.fanHttpService.fetchForEvents((e) => {
+      ctx.dispatch(new LoadFanAction());
     });
   }
 

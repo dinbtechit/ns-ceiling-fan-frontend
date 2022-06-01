@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContentComponent } from './content.component';
+import { FanHttpService } from "./services/fan-http.service";
+import { FanHttpServiceStub } from "./services/fan-http.service.stub";
+import { NgxsModule } from "@ngxs/store";
+import { FanState } from "./store/fan-state/fan.state";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe('ContentComponent', () => {
   let component: ContentComponent;
@@ -8,9 +13,17 @@ describe('ContentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContentComponent ]
+      imports:[
+        HttpClientTestingModule,
+        NgxsModule.forRoot([FanState])
+      ],
+      declarations: [ContentComponent],
+      providers: [
+        FanHttpService,
+        { provide: FanHttpService, useClass: FanHttpServiceStub }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -20,6 +33,10 @@ describe('ContentComponent', () => {
   });
 
   it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should increase speed when pulled cord 1', () => {
     expect(component).toBeTruthy();
   });
 });
