@@ -11,12 +11,15 @@
            src="https://i.ya-webdesign.com/images/fan-blades-png.png" alt="fan">
     </div>
     <div fxLayout="row" fxLayoutGap="15px" class="font-weight-bold">
-      <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.settings.speed == 0 }">0</div>
-      <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.settings.speed == 1 }">1</div>
-      <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.settings.speed == 2 }">2</div>
-      <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.settings.speed == 3 }">3</div>
+      <div class="shadow p-3 mb-5 rounded basic-border" [ngClass]="{ 'bg-warning' : fan.settings.speed == 0 }">0</div>
+      <div class="shadow p-3 mb-5 rounded basic-border" [ngClass]="{ 'bg-warning' : fan.settings.speed == 1 }">1</div>
+      <div class="shadow p-3 mb-5 rounded basic-border" [ngClass]="{ 'bg-warning' : fan.settings.speed == 2 }">2</div>
+      <div class="shadow p-3 mb-5 rounded basic-border" [ngClass]="{ 'bg-warning' : fan.settings.speed == 3 }">3</div>
     </div>
-    {{ fan.settings.direction ? 'clockwise' : 'counter-clockwise' }}
+
+    <span class="bg-dark p-2 rounded text-white font-weight-bold shadow">
+      {{ fan.settings.direction ? 'clockwise' : 'counter-clockwise' }}
+    </span>
 
     <app-error-overlay *ngIf="fan.httpError.status"></app-error-overlay>
 
