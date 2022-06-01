@@ -1,22 +1,22 @@
-<ng-container *ngIf="fan$ | async; let fan">
+<ng-container *ngIf="fanState$ | async; let fan">
 <div fxLayout="column" fxLayoutAlign="center center" class="h-100">
   <h1>Simple Ceiling Fan</h1>
   <div class="svg">
     <img class="wings" src="https://i.ya-webdesign.com/images/fan-blades-png.png" alt="" style="transform: scale(.75)">
   </div>
   <div fxLayout="row" fxLayoutGap="15px" class="font-weight-bold">
-    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.fanState.speed == 0 }">0</div>
-    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.fanState.speed == 1 }">1</div>
-    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.fanState.speed == 2 }">2</div>
-    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.fanState.speed == 3 }">3</div>
+    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.speed == 0 }">0</div>
+    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.speed == 1 }">1</div>
+    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.speed == 2 }">2</div>
+    <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.speed == 3 }">3</div>
   </div>
-  {{ fan.fanState.direction? 'clockwise' : 'counter-clockwise' }}
+  {{ fan.direction? 'clockwise' : 'counter-clockwise' }}
   <div fxLayout="row" fxLayoutGap="50px">
     <button class="btn-lg btn-default" (click)="onCord1Pull()">
       <i class="fa fa-tachometer" aria-hidden="true"></i> Cord 1</button>
     <button class="btn-lg btn-default" (click)="onCord2Pull()">
       <i class="fa fa-undo"
-         [ngClass]="{'fa-repeat' : !fan.fanState.direction, 'fa-undo': fan.fanState.direction}"
+         [ngClass]="{'fa-repeat' : !fan.direction, 'fa-undo': fan.direction}"
          aria-hidden="true"></i> Cord 2</button>
   </div>
 </div>

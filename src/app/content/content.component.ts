@@ -6,7 +6,7 @@ import {
   PullChord1Action,
   PullChord2Action
 } from "./store/fan-state/fan.actions";
-import { FanStateModel } from "./store/fan-state/fan.state";
+import { FanState, FanStateModel } from "./store/fan-state/fan.state";
 import { Observable } from "rxjs";
 
 export interface FanSettings {
@@ -21,8 +21,8 @@ export interface FanSettings {
 })
 export class ContentComponent implements OnInit {
 
-  @Select()
-  fan$: Observable<FanStateModel>;
+  @Select(FanState.settings)
+  fanState$: Observable<FanSettings>;
 
   constructor(private store: Store) {
   }

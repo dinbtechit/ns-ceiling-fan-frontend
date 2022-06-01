@@ -6,11 +6,11 @@ import { FanHttpService } from "../../services/fan-http.service";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 
 export interface FanStateModel {
-  fanState: FanSettings;
+  settings: FanSettings;
 }
 
 const defaults: FanStateModel = {
-  fanState: {
+  settings: {
     speed: 0,
     direction: true
   }
@@ -26,17 +26,22 @@ export class FanState {
   constructor(private fanHttpService: FanHttpService) {
   }
 
+  @Selector()
+  static settings(state: FanStateModel): FanSettings {
+    return state.settings;
+  }
+
   @Action(LoadFanAction)
   async load(ctx: StateContext<FanStateModel>, { payload }: LoadFanAction ) {
     const fanState = await this.fanHttpService.getFanStatus();
     ctx.patchState({
-      fanState: fanState
+      settings: fanState
     });
   }
 
   @Action(ListenFanEventsAction, {cancelUncompleted: true})
   async listenFanEvents(ctx: StateContext<FanStateModel>) {
-    let fanSettings: FanSettings = ctx.getState().fanState;
+    let fanSettings: FanSettings = ctx.getState().settings;
     await fetchEventSource('http://192.168.195.128:3000/api/v1/fan/cord/pull/sse', {
       onmessage(ev) {
         fanSettings = {
@@ -52,7 +57,7 @@ export class FanState {
   async pullChord1(ctx: StateContext<FanStateModel>) {
     await this.fanHttpService.sendPullCode1Req()
     ctx.patchState({
-      fanState: ctx.getState().fanState
+      settings: ctx.getState().settings
     })
   }
 
