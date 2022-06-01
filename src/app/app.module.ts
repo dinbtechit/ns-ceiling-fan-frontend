@@ -12,6 +12,7 @@ import { environment } from "../environments/environment";
 import { FanState } from "./content/store/fan-state/fan.state";
 import { HttpClientModule } from "@angular/common/http";
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FlexLayoutModule,

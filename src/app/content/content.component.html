@@ -1,8 +1,15 @@
 <ng-container *ngIf="fanState$ | async; let fan">
 <div fxLayout="column" fxLayoutAlign="center center" class="h-100">
   <h1>Simple Ceiling Fan</h1>
-  <div class="svg">
-    <img class="wings" src="https://i.ya-webdesign.com/images/fan-blades-png.png" alt="" style="transform: scale(.75)">
+  <div class="svg" style="transform: scale(0.75)">
+    <img class="wings"
+         [ngClass] = "{
+         'wings-animate' : fan.speed > 0 && fan.direction,
+         'wings-animate-counter' : fan.speed > 0 && !fan.direction
+         }"
+         [style.animation-duration] = "getFanSpeed(fan.speed)"
+         src="https://i.ya-webdesign.com/images/fan-blades-png.png" alt="fan"
+         >
   </div>
   <div fxLayout="row" fxLayoutGap="15px" class="font-weight-bold">
     <div class="shadow p-3 mb-5 rounded" [ngClass]="{ 'bg-warning' : fan.speed == 0 }">0</div>

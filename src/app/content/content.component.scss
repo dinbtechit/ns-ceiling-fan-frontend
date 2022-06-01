@@ -13,3 +13,25 @@
     width: 400px;
   }
 }
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counter-rotate {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.wings-animate {
+  animation: rotate linear infinite;
+  animation-play-state: running;
+}
+
+.wings-animate-counter {
+  animation: counter-rotate linear infinite;
+  animation-play-state: running;
+}

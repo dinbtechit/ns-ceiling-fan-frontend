@@ -6,7 +6,7 @@ import {
   PullChord1Action,
   PullChord2Action
 } from "./store/fan-state/fan.actions";
-import { FanState, FanStateModel } from "./store/fan-state/fan.state";
+import { FanState} from "./store/fan-state/fan.state";
 import { Observable } from "rxjs";
 
 export interface FanSettings {
@@ -17,12 +17,14 @@ export interface FanSettings {
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss']
+  styleUrls: ['./content.component.scss'],
 })
 export class ContentComponent implements OnInit {
 
   @Select(FanState.settings)
   fanState$: Observable<FanSettings>;
+
+  fanSpeedAnimaton: string
 
   constructor(private store: Store) {
   }
@@ -39,4 +41,16 @@ export class ContentComponent implements OnInit {
     await this.store.dispatch(new PullChord2Action());
   }
 
+  getFanSpeed(speed: number): string {
+    switch (speed) {
+      case 1:
+        return '1s';
+      case 2:
+        return '0.5s';
+      case 3:
+        return '0.1s';
+      default:
+        return '';
+    }
+  }
 }
