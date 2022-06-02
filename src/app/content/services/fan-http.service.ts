@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { EventSourceMessage, fetchEventSource } from "@microsoft/fetch-event-source";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FanHttpService {
 
-  baseUrl = 'http://192.168.195.128:3000/api/v1/fan'
+  baseUrl = `http://${environment.backendApiHost}:3000/api/v1/fan`
   cordPullPath = 'cord/pull'
 
   constructor(

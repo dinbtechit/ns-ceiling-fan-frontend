@@ -5,5 +5,13 @@ services:
     build:
       context: .
       dockerfile: 'Dockerfile'
+    networks:
+      nsfan:
+        aliases:
+          - frontend
     ports:
       - '8080:80'
+
+networks:
+  nsfan:
+    name: nsfan
