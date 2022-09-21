@@ -1,13 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Select, Store } from "@ngxs/store";
-import {
-  ListenFanEventsAction,
-  LoadFanAction,
-  PullChord1Action,
-  PullChord2Action
-} from "./store/fan-state/fan.actions";
-import { FanState, FanStateModel, HttpError } from "./store/fan-state/fan.state";
-import { Observable } from "rxjs";
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Select, Store} from "@ngxs/store";
+import {ListenFanEventsAction, LoadFanAction, PullChord1Action, PullChord2Action} from "./store/fan-state/fan.actions";
+import {FanState, FanStateModel} from "./store/fan-state/fan.state";
+import {Observable} from "rxjs";
 
 export interface FanSettings {
   speed: number
@@ -30,6 +25,17 @@ export class ContentComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.store.dispatch([new LoadFanAction(), new ListenFanEventsAction()]);
+    if (typeof SharedWorker !== 'undefined') {
+      // Create a new
+      const worker = new SharedWorker('services/manage-sse.worker', import.meta.url);
+      worker.port.onmessage = ({ data }) => {
+        console.log(`page got message: ${data}`);
+      };
+      worker.port.postMessage('hello');
+    } else {
+      // Web workers are not supported in this environment.
+      // You should add a fallback so that your program still executes correctly.
+    }
   }
 
   async onCord1Pull() {

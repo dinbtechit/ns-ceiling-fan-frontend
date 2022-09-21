@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -20,8 +20,10 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@angular/service-worker": "~12.2.0",
     "@microsoft/fetch-event-source": "^2.0.1",
     "@ngxs/store": "^3.7.3",
+    "@types/sharedworker": "^0.0.81",
     "bootstrap": "^4.6.1",
     "jquery": "^1.9.1",
     "rxjs": "~6.6.0",

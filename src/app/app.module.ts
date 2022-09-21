@@ -14,6 +14,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ErrorOverlayComponent } from './content/components/error-overlay/error-overlay.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,13 @@ import { ErrorOverlayComponent } from './content/components/error-overlay/error-
     HttpClientModule,
     FlexLayoutModule,
     NgxsModule.forRoot([FanState], { developmentMode: !environment.production }),
-    NgxsReduxDevtoolsPluginModule.forRoot()
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

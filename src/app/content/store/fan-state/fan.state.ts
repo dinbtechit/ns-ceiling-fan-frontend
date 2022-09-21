@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { ErrorAction, ListenFanEventsAction, LoadFanAction, PullChord1Action, PullChord2Action } from './fan.actions';
-import { FanSettings } from "../../content.component";
-import { FanHttpService } from "../../services/fan-http.service";
+import {Injectable} from '@angular/core';
+import {State, Action, StateContext, Selector} from '@ngxs/store';
+import {ErrorAction, ListenFanEventsAction, LoadFanAction, PullChord1Action, PullChord2Action} from './fan.actions';
+import {FanSettings} from "../../content.component";
+import {FanHttpService} from "../../services/fan-http.service";
 
 export interface FanStateModel {
   settings: FanSettings;
@@ -19,7 +19,7 @@ const defaults: FanStateModel = {
     speed: 0,
     direction: true
   },
-  httpError: { status: false }
+  httpError: {status: false}
 };
 
 @State<FanStateModel>({
@@ -38,11 +38,11 @@ export class FanState {
   }
 
   @Action(LoadFanAction)
-  async load(ctx: StateContext<FanStateModel>, { payload }: LoadFanAction) {
+  async load(ctx: StateContext<FanStateModel>, {payload}: LoadFanAction) {
     try {
       const fanState = await this.fanHttpService.getFanStatus();
       ctx.patchState({
-        httpError: { status: false, message: ''},
+        httpError: {status: false, message: ''},
         settings: fanState
       });
     } catch (e) {
@@ -50,13 +50,20 @@ export class FanState {
     }
   }
 
-  @Action(ListenFanEventsAction, { cancelUncompleted: true })
+  @Action(ListenFanEventsAction, {cancelUncompleted: true})
   async listenFanEvents(ctx: StateContext<FanStateModel>) {
     try {
       await this.fanHttpService.fetchForEvents((e) => {
-        ctx.dispatch(new LoadFanAction());
+        if (e.data === "") return;
+        const fanSettings: FanSettings = JSON.parse(e.data);
+        ctx.patchState({
+          httpError: {status: false, message: ''},
+          settings: fanSettings
+        });
       }, (err) => {
         ctx.dispatch(new ErrorAction(err.message));
+      }, () => {
+          ctx.dispatch(new LoadFanAction());
       });
     } catch (e) {
       ctx.dispatch(new ErrorAction(e.message));
@@ -85,7 +92,7 @@ export class FanState {
   }
 
   @Action(ErrorAction)
-  handleError(ctx: StateContext<FanStateModel>, { payload }: ErrorAction) {
+  handleError(ctx: StateContext<FanStateModel>, {payload}: ErrorAction) {
     ctx.patchState({
       httpError: {
         status: true,

@@ -28,10 +28,24 @@ export class FanHttpService {
     return this.http.put(`${this.baseUrl}/${this.cordPullPath}/2`, null).toPromise();
   }
 
-  async fetchForEvents(onSuccess = (e: EventSourceMessage) => {}, onError = (err: any) => {}) {
+  async fetchForEvents(onSuccess = (e: EventSourceMessage) => {}, onError = (err: any) => {}, reload = () => {}) {
     await fetchEventSource(`${this.baseUrl}/${this.cordPullPath}/sse`, {
       onmessage: (e) => onSuccess(e),
-      onerror: (err: any) => onError(err)
+      onerror: (err: any) => onError(err),
+      onopen: (res) => {
+        if (res.ok && res.status === 200) {
+          reload();
+        } else if (
+          res.status >= 400 &&
+          res.status < 500 &&
+          res.status !== 429
+        ) {
+          console.log("Client side error ", res);
+        }
+        return Promise.resolve();
+      },
+
+
     });
   }
 }

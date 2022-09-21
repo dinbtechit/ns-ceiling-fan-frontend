@@ -13,6 +13,11 @@ A user interface for the NS Ceiling Fan app.
 
 ## Development
 
+1. Build ns-saltire template
+```
+ng build ns-saltire
+``` 
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
