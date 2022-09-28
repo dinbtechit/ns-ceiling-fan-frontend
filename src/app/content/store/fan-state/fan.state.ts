@@ -45,7 +45,7 @@ export class FanState {
         httpError: {status: false, message: ''},
         settings: fanState
       });
-    } catch (e) {
+    } catch (e: any) {
       ctx.dispatch(new ErrorAction(e.message));
     }
   }
@@ -54,7 +54,7 @@ export class FanState {
   async listenFanEvents(ctx: StateContext<FanStateModel>) {
     try {
       await this.fanHttpService.fetchForEvents((e) => {
-        if (e.data === "") return;
+        if (e.data === undefined || e.data === 'undefined' || e.data === '') return;
         const fanSettings: FanSettings = JSON.parse(e.data);
         ctx.patchState({
           httpError: {status: false, message: ''},
@@ -63,10 +63,12 @@ export class FanState {
       }, (err) => {
         ctx.dispatch(new ErrorAction(err.message));
       }, () => {
-          ctx.dispatch(new LoadFanAction());
+        ctx.dispatch(new LoadFanAction());
       });
     } catch (e) {
-      ctx.dispatch(new ErrorAction(e.message));
+      if (e instanceof Error) {
+        ctx.dispatch(new ErrorAction(e.message));
+      }
     }
   }
 
@@ -78,7 +80,9 @@ export class FanState {
         settings: ctx.getState().settings
       })
     } catch (e) {
-      ctx.dispatch(new ErrorAction(e.message));
+      if (e instanceof Error) {
+        ctx.dispatch(new ErrorAction(e.message));
+      }
     }
   }
 
@@ -86,7 +90,7 @@ export class FanState {
   async pullChord2(ctx: StateContext<FanStateModel>) {
     try {
       await this.fanHttpService.sendPullCode2Req()
-    } catch (e) {
+    } catch (e: any) {
       ctx.dispatch(new ErrorAction(e.message));
     }
   }
